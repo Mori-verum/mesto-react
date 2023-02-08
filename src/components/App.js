@@ -42,7 +42,6 @@ function App() {
   function handleCardClick(data) {
     setIsOpenPopup({ isImagePopupOpen: true });
     setSelectedCard(data);
-    console.log(data)
   }
 
   function handleEscClose(evt) {
@@ -86,7 +85,7 @@ function App() {
         isOpen={isOpenPopup.isImagePopupOpen}
         onClose={closeAllPopups}
         onOverlayClose={handleOverlayClose}
-        card = {selectedCard}
+        card={selectedCard}
       />
 
       <PopupWithForm
@@ -95,14 +94,13 @@ function App() {
         onClose={closeAllPopups}
         onOverlayClose={handleOverlayClose}
         title='Обновить аватар'
-        children={(
-          <section className="popup__form-section">
-            <input required placeholder="Ссылка на картинку" type="url" name="link"
-              className="popup__input popup__input_margin_big" />
-            <span className="popup__input-error" id="link--avatar-error"></span>
-          </section>)
-        }
-        submitText='Сохранить' />
+        submitText='Сохранить'>
+        <section className="popup__form-section">
+          <input required placeholder="Ссылка на картинку" type="url" name="link"
+            className="popup__input popup__input_margin_big" />
+          <span className="popup__input-error" id="link--avatar-error"></span>
+        </section>
+      </PopupWithForm>
 
       <PopupWithForm
         name='edit'
@@ -110,21 +108,18 @@ function App() {
         onClose={closeAllPopups}
         onOverlayClose={handleOverlayClose}
         title='Редактировать профиль'
-        children={(
-          <>
-            <section className="popup__form-section">
-              <input required placeholder="Введите имя" type="text" name="name"
-                className="popup__input popup__input_margin_big" minLength="2" maxLength="40" />
-              <span className="popup__input-error" id="username-error"></span>
-            </section>
-            <section className="popup__form-section">
-              <input required placeholder="Введите описание" type="text" name="description"
-                className="popup__input" minLength="2" maxLength="200" />
-              <span className="popup__input-error" id="description-error"></span>
-            </section>
-          </>)
-        }
-        submitText='Сохранить' />
+        submitText='Сохранить'>
+        <section className="popup__form-section">
+          <input required placeholder="Введите имя" type="text" name="name"
+            className="popup__input popup__input_margin_big" minLength="2" maxLength="40" />
+          <span className="popup__input-error" id="username-error"></span>
+        </section>
+        <section className="popup__form-section">
+          <input required placeholder="Введите описание" type="text" name="description"
+            className="popup__input" minLength="2" maxLength="200" />
+          <span className="popup__input-error" id="description-error"></span>
+        </section>
+      </PopupWithForm>
 
       <PopupWithForm
         name='add-post'
@@ -132,28 +127,25 @@ function App() {
         onClose={closeAllPopups}
         onOverlayClose={handleOverlayClose}
         title='Новое место'
-        children={(
-          <>
-            <section className="popup__form-section">
-              <input required placeholder="Название" type="text" name="name"
-                className="popup__input popup__input_margin_big" minLength="2" maxLength="30" />
-              <span className="popup__input-error" id="post-text-error"></span>
-            </section>
-            <section className="popup__form-section">
-              <input type="url" required placeholder="Ссылка на картинку" name="link"
-                className="popup__input" />
-              <span className="popup__input-error" id="link-error"></span>
-            </section>
-          </>)
-        }
-        submitText='Сохранить' />
+        submitText='Сохранить'>
+        <section className="popup__form-section">
+          <input required placeholder="Название" type="text" name="name"
+            className="popup__input popup__input_margin_big" minLength="2" maxLength="30" />
+          <span className="popup__input-error" id="post-text-error"></span>
+        </section>
+        <section className="popup__form-section">
+          <input type="url" required placeholder="Ссылка на картинку" name="link"
+            className="popup__input" />
+          <span className="popup__input-error" id="link-error"></span>
+        </section>
+      </PopupWithForm>
 
       {/* <PopupWithForm
         name='delete'
         isOpen={isDeletePopupOpen}
         title='Вы уверены?'
         submitText='Да' />  */}
-      
+
     </div>
   );
 }

@@ -1,15 +1,3 @@
-const selectorsForCard = {
-  popupSelector: '.popup_view-post',
-  popupImgSelector: '.popup__image',
-  popupImgTitleSelector: '.popup__img-title',
-  btnLikeEnabledClass: 'element__like-button_enabled',
-  btnLikeSelector: '.element__like-button',
-  btnDeleteSelector: '.element__delete-button',
-  elemDescriptionSelector: '.element__description',
-  elemImageSelector: '.element__image',
-  elemLikeCounterSelector: '.element__like-counter'
-}
-
 const selectorsForValidation = {
   formSectionSelector: '.popup__form-section',
   formSelector: '.popup__form',
@@ -43,7 +31,6 @@ const postsContainer = document.querySelector('.elements');
 
 
 export {
-  selectorsForCard,
   selectorsForValidation,
   btnEditAvatar,
   btnOpenProfile,

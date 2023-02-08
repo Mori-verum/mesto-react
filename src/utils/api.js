@@ -5,7 +5,7 @@ export default class Api {
   }
 
   _returnJson(res) {
-    if(res.ok) {
+    if (res.ok) {
       return res.json();
     }
 
