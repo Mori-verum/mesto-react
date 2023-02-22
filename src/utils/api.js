@@ -11,6 +11,7 @@ export default class Api {
 
     return Promise.reject("Ошибка: " + res.status);
   }
+
   _request(url, options) {
     return fetch(url, options).then(this._returnJson)
   }
@@ -22,18 +23,18 @@ export default class Api {
     })
   }
 
-  patchUserInfo(name, about) {
+  setUserInfo(data) {
     return this._request(`${this._baseUrl}users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: name,
-        about: about
+        name: data.name,
+        about: data.about
       })
     })
   }
 
-  patchUserAvatar(avatar) {
+  setUserAvatar(avatar) {
     return this._request(`${this._baseUrl}users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
@@ -43,13 +44,13 @@ export default class Api {
     })
   }
 
-  addCard(name, link) {
+  addCard(data) {
     return this._request(`${this._baseUrl}cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name,
-        link
+        name: data.name,
+        link: data.link
       })
     })
   }
@@ -68,20 +69,14 @@ export default class Api {
     })
   }
 
-  addLike(id) {
+  changeLikeCardStatus(id, isLiked) {
     return this._request(`${this._baseUrl}/cards/${id}/likes`, {
-      method: "PUT",
-      headers: this._headers,
-    })
-  }
-
-  deleteLike(id) {
-    return this._request(`${this._baseUrl}/cards/${id}/likes`, {
-      method: "DELETE",
-      headers: this._headers,
+      method: isLiked ? "DELETE" : "PUT",
+      headers: this._headers
     })
   }
 }
+
 
 export const api = new Api({
   baseUrl: 'https://nomoreparties.co/v1/cohort-57/',
