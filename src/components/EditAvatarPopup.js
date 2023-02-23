@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRef } from "react"
 import PopupWithForm from "./PopupWithForm"
 
 function EditAvatarPopup(props) {
     const linkInput = useRef();
+
+    useEffect(() => {
+        linkInput.current.value = "";
+    }, [props.isOpen]);
 
     function handleSubmit(evt) {
         evt.preventDefault();

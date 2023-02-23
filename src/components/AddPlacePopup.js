@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PopupWithForm from "./PopupWithForm"
 
 function AddPlacePopup(props) {
-    const [cardName, setCardName] = useState();
-    const [cardLink, setCardLink] = useState();
+    const [cardName, setCardName] = useState("");
+    const [cardLink, setCardLink] = useState("");
 
+    useEffect(() => {
+        setCardName("");
+        setCardLink("");
+    }, [props.isOpen]);
 
     function handleSubmit(evt) {
         evt.preventDefault();
@@ -12,9 +16,7 @@ function AddPlacePopup(props) {
         props.onAddCard({
             name: cardName,
             link: cardLink
-        });
-        setCardName("");
-        setCardLink("");
+        })
     }
 
     function handleChangeCardName(evt) {
@@ -35,12 +37,12 @@ function AddPlacePopup(props) {
             title='Новое место'
             submitText='Сохранить'>
             <section className="popup__form-section">
-                <input value={cardName || ""} onChange={handleChangeCardName} required placeholder="Название" type="text" name="name"
+                <input value={cardName} onChange={handleChangeCardName} required placeholder="Название" type="text" name="name"
                     className="popup__input popup__input_margin_big" minLength="2" maxLength="30" />
                 <span className="popup__input-error" id="post-text-error"></span>
             </section>
             <section className="popup__form-section">
-                <input value={cardLink || ""} onChange={handleChangeCardLink} type="url" required placeholder="Ссылка на картинку" name="link"
+                <input value={cardLink} onChange={handleChangeCardLink} type="url" required placeholder="Ссылка на картинку" name="link"
                     className="popup__input" />
                 <span className="popup__input-error" id="link-error"></span>
             </section>

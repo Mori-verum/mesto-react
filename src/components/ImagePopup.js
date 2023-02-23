@@ -13,7 +13,6 @@ function ImagePopup({onOverlayClose, isOpen, onClose, card}) {
         </div>
     )
 
-
 }
 
 export default ImagePopup
